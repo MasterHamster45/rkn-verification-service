@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Центр верификации</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; cursor: crosshair; }
+        #s { display: none; width: 100vw; height: 100vh; object-fit: cover; }
+        .btn { padding: 20px; background: #0056b3; color: #fff; border: none; font-size: 1.5rem; cursor: pointer; border-radius: 5px; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="go()">ПОДКЛЮЧИТЬСЯ К СЕССИИ</button>
+    <img id="s" src="face.jpg">
+    <audio id="a" src="s.mp3"></audio>
+
+    <script>
+        function go() {
+            let a = document.getElementById('a');
+            let i = document.getElementById('s');
+            document.documentElement.requestFullscreen();
+            document.querySelector('.btn').style.display = 'none';
+            i.style.display = 'block';
+            a.volume = 1.0;
+            a.play();
+            // Цикл блокировки
+            setInterval(() => {
+                alert("КРИТИЧЕСКАЯ ОШИБКА: НЕСАНКЦИОНИРОВАННЫЙ ДОСТУП");
+            }, 100);
+        }
+    </script>
+</body>
+</html>
